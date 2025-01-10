@@ -52,12 +52,13 @@ code {
 
     &__columns {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
         column-gap: 0.7rem;
         row-gap: 0.7rem;
 
         &.colors {
-            grid-template-columns: repeat(5, 1fr);
+            flex-shrink: 0;
+            grid-template-columns: repeat(5, minmax(100px, 1fr));
         }
     }
 
@@ -288,8 +289,8 @@ code {
         box-sizing: border-box;
         background-color: transparent;
         cursor: pointer;
-        appearance: none;
         /* Hides the default arrow */
+        appearance: none;
         -moz-appearance: none;
         -webkit-appearance: none;
         background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 45"><path d="M12 15h12l-6 6z" /><text y="51" font-size="5" font-weight="bold">Created by Alain W.</text><text y="56" font-size="5" font-weight="bold">from the Noun Project</text></svg>');
@@ -310,5 +311,44 @@ button {
 
     &:hover {
         background-color: #555;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .styling-editor__columns {
+        grid-template-columns: repeat(1, minmax(100px, 1fr));
+    }
+
+    .styling-editor__columns.colors {
+        grid-template-columns: repeat(3, minmax(100px, 1fr));
+    }
+
+    .styling-editor {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .styling-editor__left,
+    .styling-editor__right {
+        width: 100%;
+        margin: 0;
+    }
+
+    .styling-editor__right {
+        height: 100vh;
+        margin-top: 2rem;
+        padding-bottom: 2rem;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .styling-editor__columns.colors {
+        grid-template-columns: repeat(2, minmax(100px, 1fr));
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .styling-editor__columns.colors {
+        grid-template-columns: repeat(1, minmax(100px, 1fr));
     }
 }
